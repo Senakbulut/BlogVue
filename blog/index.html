@@ -8,21 +8,43 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="app">
-        <h1>En son yazdığım yazılar</h1>
-        <ul>
-            <list-element v-for="element in listElement"
-                :key="element.id"
-                :id="element.id"
-               :image="element.image"
-               :header="element.header"
-               :text="element.text"
-               @remove-element = "removeFromList">
-               
-            </list-element>
-          
-        </ul>
+     <div id="app">
+        <button @click="selected = 'listView'">Ana Sayfa</button>
+        <button @click="selected = 'newEntry'"> Yeni Entry</button>
+        <keep-alive>
+            <component :is='selected'></component>
+        </keep-alive>
     </div>
+    <script type="text/x-template" id="home">
+        <div>
+            <h1>En son yazdığım yazılar</h1>
+            <ul>
+                <list-element v-for="element in listElement"
+                    :key="element.id"
+                    :id="element.id"
+                   :image="element.image"
+                   :header="element.header"
+                   :text="element.text"
+                   @remove-element = "removeFromList">
+                   <a href="#" slot="entryLink">Devamını Oku</a>
+                   <p slot="date">2021</p>
+                </list-element>
+                 </ul>
+        </div>
+    </script>
+    <script type="text/x-template" id="newEntry">
+        <div>
+            <h1>Yeni Entry</h1>
+          <div style="margin-bottom:20px;">
+              <label for="baslik">Baslik</label>
+            <input type="text" name="baslik" id="baslik" />
+          </div>
+          <div>
+              <label for="metin">Metin</label>
+            <textarea name="metin" id="metin"></textarea>
+          </div>    
+        </div>
+    </script>
     <script src="vue.js"></script>
     <script src="main.js"></script>
 
