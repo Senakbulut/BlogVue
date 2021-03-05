@@ -11,9 +11,11 @@
      <div id="app">
         <button @click="selected = 'listView'">Ana Sayfa</button>
         <button @click="selected = 'newEntry'"> Yeni Entry</button>
-        <keep-alive>
+        <transition mode="out-in" name="component-fade">
+          <keep-alive>
             <component :is='selected'></component>
         </keep-alive>
+        </transition>
     </div>
     <script type="text/x-template" id="home">
         <div>
