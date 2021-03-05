@@ -2,7 +2,7 @@
   opacity: 0;
 }
 .component-fade-enter-active,.component-fade-leave-active{
-  transition: opacity 0.3 ease;
+  transition: opacity 0.3s ease;
 }
 ul {
     list-style: none;
